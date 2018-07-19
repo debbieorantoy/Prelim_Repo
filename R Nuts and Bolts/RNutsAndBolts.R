@@ -43,113 +43,57 @@ unclass(y)
 y<-factor(c("male", "female", "female", "male", "male"),levels = c("male", "female"))
 y
 
-x<- c(1,2,NA,10,3)
-is.na(x)
-is.nan(x)
-x<-c(1,2,NaN,NA,4)
-is.na(x)
-is.nan(x)
+#SW PRELIM
+#Q1
+z <- 12 
+class(z)
+#Q2
+z <- c(12, FALSE)
+class(z)
+#Q3
+m <- c(10,13, 15, 33)
+n <- c(13, 22, 88, 110)
+rbind(m, n)
+#Q4
+z <- list(22, "a", "c", FALSE)
+z[[2]] 
+#Q5
+z <- 10:40 
+y <- 3
+z + y
 
-#Data Frames
-x<-data.frame(foo=1:4,bar=c(T,T,F,F))
+#Q6
+x <- c(117, 114, 14, 15, 113, 112, 110) 
+x[x>100]<- 14
 x
-nrow(x)
-ncol(x)
-#Names
-x<-1:3
-names(x)
-names(x)<-c("foo","bar","norf")
-x
-names(x)
-#Names-List
-x<-list(a = 1,b = 2,c = 3)
-x
-#Matrix Names
-m<-matrix (1:4,nrow = 2, ncol = 2 )
-dimnames(m)<- list(c("a","b"), c("c", "d"))
-m
-
-#dput-ing
-y<-data.frame(a=1,b="a")
-dput(y)
-dput(y,file="y.R")
-new.y<-dget("y.R")
-new.y
-#Dumping
-x <-"foo"
-y <-data.frame(a=1, b="a")
-dump(c("x","y"),file="data.R")
-rm(x,y)
-source("data.R")
-y
-x
-#Subsetting
-x <- c("a","b","c","c","d","a")
-x[1]
-x[2]
-x[1:4]
-x[x>"a"]
-u <- x>"a"
-u
-x[u]
-#Subsetting Lists
-x<-list(foo=1:4, bar=0.6)
-x[1]
-x[[1]]
-x$bar
-x[["bar"]]
-x["bar"]
-x<- list(foo=1:4,bar=0.6,baz="hello")
-x[c(1,3)]
-x<- list(foo=1:4, bar=0.6, baz="hello")
-name<-"foo"
-x[[name]]
-x$name
-x$foo
-#Subsetting Nested Elements
-x<-list(a=list(10,12,14), b=c(3.14,2.81))
-x[[c(1,3)]]
-x[[1]][[3]]
-x[[c(2,1)]]
-#Subsetting a Matrix
-x<-matrix(1:6,2,3)
-x[1,2]
-x[2,1]
-x[1, ]
-x[ ,2]
-x<-matrix(1:6, 2,3)
-x[1,2]
-x[1,2, drop=FALSE]
-x<matrix(1:6,2,3)
-x[1, ]
-x[1, , drop=FALSE]
-#Partial Matching
-x<-list(aardvark=1:5)
-x$a
-x[["a"]]
-x[["a", exact= FALSE]]
-x<- c(1,2,NA,4,NA,5)
-bad<-is.na(x)
-x[!bad]
-x<-c(1,2,NA,4,NA,5)
-y<-c("a","b",NA, "d", NA, "f")
-good<-complete.cases(x,y)
-good
-x[good]
-y[good]
-#Removing NA values
-airquality[1:6, ]
-good<-complete.cases(airquality)
-airquality[good, ][1:6, ]
-#Vectorized Operations
-x<- 1:4;y<-6:9
-x+y
-x>2
-x>=2
-y==8
-x*y
-x/y
-x<-matrix(1:4,2,2);y<-matrix(rep(10,4),2,2)
-x*y
-x/y
-x %*% y
+#Q7
+names(hw1_data)
+#Q8
+hw1_data[1:12, ]
+#Q9
+nrow(hw1_data)
+ncol(hw1_data)
+#Q10
+tail(hw1_data,8)
+#Q11
+hw1_data[112,3]
+hw1_data[42,4]
+hw1_data[82,2]
+#Q12
+sum(is.na(hw1_data))
+sum(is.na(hw1_data[1:153,1]))
+sum(is.na(hw1_data[1:153,2]))
+sum(is.na(hw1_data[1:153,3]))
+sum(is.na(hw1_data[1:153,4]))
+#Q13
+apply(subset(hw1_data, !is.na(Ozone), select = Ozone),2,mean)
+apply(subset(hw1_data, !is.na(Wind), select = Wind),2,mean)
+apply(subset(hw1_data, !is.na(Temp), select = Temp),2,mean)
+#Q14
+sub = subset(hw1_data, Ozone > 26 & Temp > 80, select = Solar.R)
+apply(sub,2,mean)
+#Q15
+apply(subset(hw1_data, Month==8, select = Temp), 2,mean)
+apply(subset(hw1_data, Month==6, select = Temp), 2,mean)
+#Q16
+apply(subset(hw1_data, Month==5&!is.na(Ozone), select = Ozone), 2,max)
