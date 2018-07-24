@@ -42,3 +42,58 @@ unclass(y)
 
 y<-factor(c("male", "female", "female", "male", "male"),levels = c("male", "female"))
 y
+
+#SW PRELIM
+#Q1
+z <- 12 
+class(z)
+#Q2
+z <- c(12, FALSE)
+class(z)
+#Q3
+m <- c(10,13, 15, 33)
+n <- c(13, 22, 88, 110)
+rbind(m, n)
+#Q4
+z <- list(22, "a", "c", FALSE)
+z[[2]] 
+#Q5
+z <- 10:40 
+y <- 3
+z + y
+
+#Q6
+x <- c(117, 114, 14, 15, 113, 112, 110) 
+x[x>100]<- 14
+x
+#Q7
+names(hw1_data)
+#Q8
+hw1_data[1:12, ]
+#Q9
+nrow(hw1_data)
+ncol(hw1_data)
+#Q10
+tail(hw1_data,8)
+#Q11
+hw1_data[112,3]
+hw1_data[42,4]
+hw1_data[82,2]
+#Q12
+sum(is.na(hw1_data))
+sum(is.na(hw1_data[1:153,1]))
+sum(is.na(hw1_data[1:153,2]))
+sum(is.na(hw1_data[1:153,3]))
+sum(is.na(hw1_data[1:153,4]))
+#Q13
+apply(subset(hw1_data, !is.na(Ozone), select = Ozone),2,mean)
+apply(subset(hw1_data, !is.na(Wind), select = Wind),2,mean)
+apply(subset(hw1_data, !is.na(Temp), select = Temp),2,mean)
+#Q14
+sub = subset(hw1_data, Ozone > 26 & Temp > 80, select = Solar.R)
+apply(sub,2,mean)
+#Q15
+apply(subset(hw1_data, Month==8, select = Temp), 2,mean)
+apply(subset(hw1_data, Month==6, select = Temp), 2,mean)
+#Q16
+apply(subset(hw1_data, Month==5&!is.na(Ozone), select = Ozone), 2,max)
